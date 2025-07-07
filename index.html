@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أكواد بروفايل فري فاير</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #121212; --card-bg-color: #1e1e1e; --code-bg-color: #2a2a2a; --primary-color: #00aaff; --text-color: #e0e0e0; --secondary-text-color: #a0a0a0; --border-color: #333; --success-color: #4CAF50; --input-bg: #252525; --love-color: #ff4f8b; --gradient-start: #ff4f8b; --gradient-end: #00aaff;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Cairo', sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; margin-bottom: 20px; padding: 20px 0; position: relative; }
+        header h1 { font-size: 2.2rem; background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 auto; }
+        
+        #code-counter {
+            color: var(--secondary-text-color);
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        #new-search-btn { 
+            position: fixed; bottom: 20px; left: 20px; z-index: 999;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end)); 
+            border: none; color: white; font-size: 1.8rem; 
+            width: 60px; height: 60px; border-radius: 50%; 
+            cursor: pointer; transition: transform 0.3s ease;
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+        #new-search-btn:hover { transform: scale(1.1); }
+        
+        .section-title { font-size: 1.8rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin: 40px 0 25px 0; color: var(--primary-color); transition: opacity 0.3s; text-align: center; }
+        .section-title.love-title { border-color: var(--love-color); color: var(--love-color); }
+        .section-title.shapes-title { border-color: #33CC99; color: #33CC99; }
+        .section-title.sports-title { border-color: #FFD700; color: #FFD700; }
+        .section-title.flags-title { border-color: #6CABDD; color: #6CABDD; }
+        .section-title.misc-title { border-color: #FFB900; color: #FFB900; }
+
+        .creator-section { background-color: var(--card-bg-color); padding: 25px; border-radius: 15px; margin-bottom: 40px; border: 1px solid var(--border-color); }
+        .creator-header { display:flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .creator-header h2 { margin: 0; }
+        #clear-creator-btn { position: absolute; top: 12px; left: 12px; background: transparent; border: none; color: var(--secondary-text-color); font-size: 2rem; cursor: pointer; padding: 0; line-height: 1; z-index: 5; transition: color 0.2s; }
+        #clear-creator-btn:hover { color: var(--love-color); }
+        
+        #creator-editor { 
+            background-color: var(--input-bg); border: 1px solid var(--border-color); min-height: 120px; 
+            padding: 15px; padding-left: 40px; border-radius: 8px; 
+            font-family: 'Courier New', monospace; font-size: 1.1rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+            color: var(--text-color);
+            direction: rtl; 
+            text-align: right; 
+        }
+        #creator-editor:empty:before { content: "اكتب هنا..."; color: var(--secondary-text-color); pointer-events: none; }
+        
+        .code-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .code-card { background-color: var(--card-bg-color); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; transition: transform 0.2s, opacity 0.2s; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .card-header h3 { font-size: 1.2rem; margin: 0; }
+        .reset-btn { background: none; border: none; cursor: pointer; color: var(--secondary-text-color); padding: 5px; transition: color 0.2s, transform 0.2s; }
+        .reset-btn svg { width: 18px; height: 18px; fill: currentColor; }
+        .reset-btn:hover { color: var(--primary-color); transform: rotate(-90deg); }
+        
+        .interactive-block { 
+            background-color: var(--code-bg-color); border: 1px solid var(--border-color); 
+            min-height: 100px; padding: 15px; border-radius: 8px; 
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .interactive-block pre { 
+            white-space: pre; 
+            font-size: 0.95rem; 
+            color: #f1f1f1; 
+            margin: 0; 
+        }
+
+        .live-preview-area { font-size: 1.1rem; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+        
+        .card-instructions {
+            display: none;
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--secondary-text-color);
+            background-color: var(--code-bg-color);
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .local-replacer { overflow: hidden; max-height: 0; opacity: 0; transition: all 0.4s ease-in-out; }
+        .local-replacer.visible { margin-top: 15px; max-height: 100px; opacity: 1; }
+        .local-replacer-input { width: 100%; padding: 10px; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); text-align: center; transition: border-color 0.3s, box-shadow 0.3s; }
+        
+        .local-replacer-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(0, 170, 255, 0.5);
+        }
+        
+        .card-footer { display: flex; gap: 10px; margin-top: 20px; }
+        .card-button { flex-grow: 1; background-color: var(--primary-color); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; font-weight: bold; font-family: inherit; }
+        .card-button.toggle-btn { background-color: #555; }
+        .card-button.love-btn { background-color: var(--love-color); }
+        #context-menu { position: absolute; background-color: #333; border: 1px solid #555; border-radius: 8px; padding: 8px; display: none; z-index: 1001; }
+        #color-palette { display: flex; flex-wrap: wrap; gap: 6px; width: 210px; }
+        .color-swatch { width: 25px; height: 25px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
+        .menu-divider { height: 1px; background-color: #555; margin: 8px 0; }
+        .menu-option { display: flex; align-items: center; gap: 8px; padding: 5px; cursor: pointer; border-radius: 4px; }
+        .menu-option:hover { background-color: #444; }
+        footer { text-align: center; padding: 20px; margin-top: 40px; color: var(--secondary-text-color); border-top: 1px solid var(--border-color); }
+        
+        #search-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 10, 0.95); z-index: 1000; display: none; flex-direction: column; align-items: center; padding: 20px; overflow-y: auto; }
+        .search-modal { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 20px; }
+        #close-search-btn { position: absolute; top: 20px; right: 20px; background: none; border: none; color: white; font-size: 2.5rem; cursor: pointer; }
+        .search-modal h2 { text-align: center; color: var(--primary-color); }
+        .search-input-wrapper { position: relative; width: 100%; }
+        #search-input-modal { width: 100%; padding: 15px 20px; padding-left: 50px; background-color: var(--input-bg); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-color); font-size: 1.2rem; font-family: 'Cairo', sans-serif; }
+        #search-input-clear-btn { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--secondary-text-color); font-size: 1.8rem; cursor: pointer; display: none; }
+        .suggestion-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+        .suggestion-tag { background-color: var(--card-bg-color); color: var(--secondary-text-color); border: 1px solid var(--border-color); padding: 5px 15px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+        .suggestion-tag:hover { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
+        #search-results-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; width: 100%; }
+        #search-placeholder { color: var(--secondary-text-color); text-align: center; font-size: 1.2rem; padding: 40px; }
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <header>
+            <h1>أكواد بروفايل فري فاير</h1>
+            <p id="code-counter"></p>
+        </header>
+
+        <main>
+            <section class="creator-section">
+                <div class="creator-header">
+                    <h2>صانع الأكواد المخصص</h2>
+                </div>
+                <p class="instructions">اكتب النص، ثم **ظلل (حدد) الكلمات** التي تريد تلوينها. يمكنك أيضاً **النقر المزدوج** على أي كلمة لتحديدها وإظهار القائمة.</p>
+                <div style="position: relative;">
+                    <div id="creator-editor" contenteditable="true" spellcheck="false"></div>
+                    <button id="clear-creator-btn" title="مسح الكل">&times;</button>
+                </div>
+                <div style="margin-top: 20px;">
+                    <p style="color: var(--secondary-text-color);">الكود النهائي (جاهز للنسخ):</p>
+                    <div class="interactive-block" style="margin-bottom: 15px;"><pre id="creator-output-code"></pre></div>
+                    <button class="card-button" id="creator-copy-btn">📋 نسخ الكود المخصص</button>
+                </div>
+            </section>
+            
+            <h2 class="section-title shapes-title">🎨 أشكال ورسومات 🎨</h2>
+            <div class="code-grid" id="shapes-graphics-codes"></div>
+
+            <h2 class="section-title sports-title">⚽️ أندية رياضية ⚽️</h2>
+            <div class="code-grid" id="sports-clubs-codes"></div>
+
+            <h2 class="section-title flags-title">🏳️ أعلام الدول 🏳️</h2>
+            <div class="code-grid" id="country-flags-codes"></div>
+            
+            <h2 class="section-title love-title">❤️ أكواد الحب والرومانسية ❤️</h2>
+            <div class="code-grid" id="love-codes"></div>
+
+            <h2 class="section-title">⭐ بروفايلات وألقاب جاهزة ⭐</h2>
+            <div class="code-grid" id="gaming-status-codes"></div>
+
+            <h2 class="section-title misc-title">✨ أكواد متنوعة وأقوال ✨</h2>
+            <div class="code-grid" id="misc-quotes-codes"></div>
+
+            <h2 class="section-title">📱 أكواد السوشيال ميديا 📱</h2>
+            <div class="code-grid" id="social-media-codes"></div>
+            
+        </main>
+        
+        <footer><p>&copy; 2024 - أكواد بروفايل فري فاير.</p></footer>
+    </div>
+    
+    <button id="new-search-btn" title="بحث">🔎</button>
+
+    <div id="context-menu">
+        <div id="color-palette"></div>
+        <div class="menu-divider"></div>
+        <label class="menu-option">
+            <input type="checkbox" id="bold-checkbox">
+            <span>عريض [b]</span>
+        </label>
+    </div>
+
+    <div id="search-overlay">
+        <div class="search-modal">
+            <button id="close-search-btn">&times;</button>
+            <h2>ابحث عن الكود المثالي</h2>
+            <div class="search-input-wrapper">
+                <input type="text" id="search-input-modal" placeholder="اكتب كلمة للبحث (مثال: سماء, الهلال, مصر)...">
+                <button id="search-input-clear-btn">&times;</button>
+            </div>
+            <div class="suggestion-tags"></div>
+            <div id="search-results-container">
+                 <p id="search-placeholder">ابحث عن أي كود أو شكل تريده...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- === تحميل ملف الأكواد أولاً === -->
+    <script src="codes.js"></script>
+
+    <!-- === ثم تحميل ملف الوظائف الرئيسي === -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Check if codes were loaded correctly
+            if (typeof allCodeData === 'undefined') {
+                console.error("Error: The 'codes.js' file could not be loaded or is empty.");
+                document.querySelector('main').innerHTML = '<h2 style="color: red; text-align: center;">فشل تحميل الأكواد. يرجى التأكد من وجود ملف `codes.js` في نفس المجلد.</h2>';
+                return;
+            }
+
+            const ffColors = {'FF0000':'#FF0000','FF4F8B':'#ff4f8b','FFD700':'#FFD700','FFFFFF':'#FFFFFF','00FF00':'#00FF00','0000FF':'#0000FF','004D98':'#004D98','A50044':'#A50044','0A1A57':'#0A1A57','6D7B8D':'#6D7B8D','FFA500':'#FFA500','FFD319':'#FFD319','000000':'#000000','DA291C':'#DA291C','6CABDD':'#6CABDD','D30000':'#D30000','003D73':'#003D73','E1D9D1':'#E1D9D1','E2001A':'#E2001A','004B87':'#004B87','E30613':'#E30613','FFCD00':'#FFCD00','008000':'#008000','006F2A':'#006F2A','009C3B':'#009C3B','FFDF00':'#FFDF00','5865F2':'#5865F2','00F2EA':'#00F2EA','FF00FF':'#FF00FF','A0A0A0':'#A0A0A0','33CC99':'#33CC99', 'FFB900': '#FFB900', 'CCFF00': '#CCFF00', 'FF9933': '#FF9933', '00FF7F': '#00FF7F', 'FF0099': '#FF0099', 'FF8800': '#FF8800', '9B1B30': '#9B1B30', 'EF4135': '#EF4135', 'CD212A': '#CD212A', '009246':'#009246', '0055A4': '#0055A4'};
+            const invertedFfColors = Object.fromEntries(Object.entries(ffColors).map(([code, hex]) => [hex.toLowerCase(), code]));
+            
+            const allCodeArrays = allCodeData;
+            
+            let totalCodes = 0;
+            for (const key in allCodeArrays) {
+                totalCodes += allCodeArrays[key].length;
+            }
+            const codeCounterElement = document.getElementById('code-counter');
+            if(codeCounterElement) {
+                const roundedTotal = Math.floor(totalCodes / 50) * 50;
+                codeCounterElement.textContent = `متاح الآن: +${roundedTotal} كود جاهز للتخصيص`;
+            }
+
+            const searchableCodes = [];
+            for (const [category, codes] of Object.entries(allCodeArrays)) {
+                 codes.forEach(code => searchableCodes.push({ ...code, category }));
+            }
+
+            function generateCardHTML(data) {
+                const hasReplacer = data.defaultText;
+                const copyBtnClass = data.category === 'love-codes' ? 'card-button copy-btn love-btn' : 'card-button copy-btn';
+                const replacerHTML = hasReplacer ? `<div class="local-replacer"><input type="text" class="local-replacer-input"></div>` : '';
+                const instructionsHTML = hasReplacer ? `<p class="card-instructions">لتغيير النص، استخدم الصندوق أدناه. لتغيير الألوان، حدد النص في المعاينة.</p>` : '';
+
+                return `<div class="code-card" data-card-id="${data.id}" data-original-template="${data.template.replace(/"/g, '&quot;')}" data-default-text="${data.defaultText || ''}"><div class="card-header"><h3>${data.title}</h3><button class="reset-btn" title="إعادة تعيين"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button></div><div class="interactive-block"><pre></pre></div>${instructionsHTML}${replacerHTML}<div class="card-footer"><button class="card-button toggle-btn">✍️ تعديل ومعاينة</button><button class="${copyBtnClass}">📋 نسخ الكود</button></div></div>`;
+            }
+
+            function populateGrid(containerId, dataArray) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                let cardsHTML = '';
+                dataArray.forEach(data => {
+                    cardsHTML += generateCardHTML({ ...data, category: containerId });
+                });
+                container.innerHTML = cardsHTML;
+            }
+            
+            for (const [containerId, dataArray] of Object.entries(allCodeArrays)) {
+                populateGrid(containerId, dataArray);
+            }
+
+            const menu = document.getElementById('context-menu');
+            const paletteContainer = document.getElementById('color-palette');
+            const boldCheckbox = document.getElementById('bold-checkbox');
+            let menuState = { context: null, target: null, range: null };
+           
+            function parseCodeToModel(rawCode) {
+                const model = [];
+                const regex = /(\[([0-9a-fA-F]{6})\])|(\[b\])|(\[c\])|(\n)|([^[\n]+)/gi;
+                let match;
+                while ((match = regex.exec(rawCode)) !== null) {
+                    if (match[2]) model.push({ type: 'color', value: match[2].toUpperCase() });
+                    else if (match[3]) model.push({ type: 'bold' });
+                    else if (match[4]) model.push({ type: 'center' });
+                    else if (match[5]) model.push({ type: 'newline' });
+                    else if (match[6]) model.push({ type: 'text', value: match[6] });
+                }
+                return model;
+            }
+            
+            function renderPreview(container, model) {
+                container.innerHTML = '';
+                container.classList.add('live-preview-area');
+                document.execCommand('styleWithCSS', false, false);
+            
+                let currentColor = 'FFFFFF';
+                let isBold = false;
+            
+                model.forEach((part) => {
+                    if (part.type === 'color') currentColor = part.value;
+                    else if (part.type === 'bold' || part.type === 'center') isBold = true;
+                    else if (part.type === 'newline') container.appendChild(document.createElement('br'));
+                    else if (part.type === 'text') {
+                        let content = document.createTextNode(part.value);
+                        let finalElement = content;
+            
+                        if (isBold) {
+                            const boldEl = document.createElement('b');
+                            boldEl.appendChild(content);
+                            finalElement = boldEl;
+                        }
+            
+                        const fontEl = document.createElement('font');
+                        fontEl.color = ffColors[currentColor] || `#${currentColor}`;
+                        fontEl.dataset.colorCode = currentColor;
+                        fontEl.appendChild(finalElement);
+                        
+                        container.appendChild(fontEl);
+                    }
+                });
+            }
+
+            function generateCodeFromCreator() {
+                const container = creatorEditor;
+                let code = '';
+                let lastColor = null;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = container.innerHTML.replace(/<div>/g, '\n').replace(/<\/div>/g, '');
+                
+                let isAnythingBold = !!tempDiv.querySelector("b, strong") || Array.from(tempDiv.querySelectorAll('span[style*="bold"]')).length > 0;
+
+                if (isAnythingBold) code += '[b]';
+
+                function processNode(node) {
+                    let text = '';
+                    if (node.nodeName === 'BR') {
+                        return '\n';
+                    } else if (node.nodeType === Node.TEXT_NODE) {
+                        return node.textContent;
+                    } else if (node.nodeType === Node.ELEMENT_NODE) {
+                        let currentColor = null;
+                        if (node.nodeName === 'FONT' && node.color) {
+                           const hexColor = node.color.startsWith('#') ? node.color : `#${node.color}`;
+                           currentColor = invertedFfColors[hexColor.toLowerCase()];
+                        }
+                        if (currentColor && currentColor.toUpperCase() !== lastColor) {
+                            text += `[${currentColor.toUpperCase()}]`;
+                            lastColor = currentColor.toUpperCase();
+                        }
+                        node.childNodes.forEach(child => { text += processNode(child); });
+                    }
+                    return text;
+                }
+                container.childNodes.forEach(node => { code += processNode(node); });
+                return code.replace(/\n\n/g, '\n').replace(/\[FFFFFF\]/g, '').trim();
+            }
+            
+            function generateCodeFromCardPreview(interactiveBlock) {
+                let code = '';
+                let lastColor = null;
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = interactiveBlock.innerHTML;
+                let isBold = !!tempDiv.querySelector("b, strong");
+
+                if (isBold) code += '[b]';
+                if (interactiveBlock.dataset.codeContainsCenter === 'true') code += '[c]';
+
+                function processCardNode(node) {
+                    let text = '';
+                     if (node.nodeName === 'BR') {
+                        text += '\n';
+                    } else if (node.nodeType === Node.TEXT_NODE) {
+                        text += node.textContent;
+                    } else if (node.nodeName === 'FONT') {
+                        const colorCode = node.dataset.colorCode;
+                        if (colorCode && colorCode.toUpperCase() !== lastColor && colorCode.toUpperCase() !== 'FFFFFF') {
+                            text += `[${colorCode.toUpperCase()}]`;
+                            lastColor = colorCode.toUpperCase();
+                        }
+                        node.childNodes.forEach(child => text += processCardNode(child));
+                    } else if (node.nodeName === 'B' || node.nodeName === 'STRONG') {
+                        node.childNodes.forEach(child => text += processCardNode(child));
+                    }
+                    return text;
+                }
+
+                interactiveBlock.childNodes.forEach(node => { code += processCardNode(node); });
+                return code.trim();
+            }
+
+            function initializeCard(card) {
+                const interactiveBlock = card.querySelector('.interactive-block');
+                const pre = interactiveBlock.querySelector('pre');
+                const originalCodeTemplate = card.dataset.originalTemplate;
+                const defaultText = card.dataset.defaultText || '';
+                const replacerDiv = card.querySelector('.local-replacer');
+                const replacerInput = card.querySelector('.local-replacer-input');
+                const instructions = card.querySelector('.card-instructions');
+                
+                const updateCode = (text) => {
+                    let template = originalCodeTemplate;
+                    template = template.replace(/{{TEXT}}/g, text);
+                    if (replacerInput) {
+                        const inputs = text.split(',');
+                        template = template.replace(/{{NAME(\d+)}}/g, (match, p1) => {
+                            const index = parseInt(p1, 10) - 1;
+                            return (inputs[index] || '').trim() || `Name${p1}`;
+                        });
+                    }
+                    return template;
+                };
+                
+                pre.innerText = updateCode(defaultText);
+
+                if (replacerInput) replacerInput.placeholder = `تغيير النص (الافتراضي: ${defaultText})`;
+
+                card.querySelector('.toggle-btn').addEventListener('click', (e) => {
+                    const btn = e.target;
+                    const isPreview = interactiveBlock.classList.contains('live-preview-area');
+                    if (isPreview) {
+                        const newCode = generateCodeFromCardPreview(interactiveBlock);
+                        interactiveBlock.innerHTML = '';
+                        interactiveBlock.classList.remove('live-preview-area');
+                        interactiveBlock.contentEditable = false;
+                        const newPre = document.createElement('pre');
+                        newPre.innerText = newCode;
+                        interactiveBlock.appendChild(newPre);
+                        btn.innerHTML = '✍️ تعديل ومعاينة';
+                        if (instructions) instructions.style.display = 'none';
+                        if (replacerDiv) replacerDiv.classList.remove('visible');
+                    } else {
+                        const codeToRender = interactiveBlock.querySelector('pre').innerText;
+                        const model = parseCodeToModel(codeToRender);
+                        interactiveBlock.dataset.codeContainsCenter = codeToRender.toLowerCase().includes('[c]');
+                        renderPreview(interactiveBlock, model);
+                        interactiveBlock.contentEditable = true;
+                        btn.innerHTML = '👨‍💻 عرض الكود';
+                        if (instructions) instructions.style.display = 'block';
+                        if (replacerDiv) {
+                            replacerDiv.classList.add('visible');
+                            replacerInput.focus();
+                        }
+                    }
+                });
+                
+                if (replacerInput) {
+                    replacerInput.addEventListener('input', () => {
+                        const newText = replacerInput.value || defaultText;
+                        const newCode = updateCode(newText);
+                        const isPreview = interactiveBlock.classList.contains('live-preview-area');
+                        if (isPreview) {
+                           const model = parseCodeToModel(newCode);
+                           interactiveBlock.dataset.codeContainsCenter = newCode.toLowerCase().includes('[c]');
+                           renderPreview(interactiveBlock, model);
+                        } else {
+                           interactiveBlock.querySelector('pre').innerText = newCode;
+                        }
+                    });
+                }
+                
+                card.querySelector('.reset-btn').addEventListener('click', () => {
+                    const originalCode = updateCode(defaultText);
+                    interactiveBlock.innerHTML = '';
+                    const preEl = document.createElement('pre');
+                    preEl.innerText = originalCode;
+                    interactiveBlock.appendChild(preEl);
+                    interactiveBlock.classList.remove('live-preview-area');
+                    interactiveBlock.contentEditable = false;
+                    card.querySelector('.toggle-btn').innerHTML = '✍️ تعديل ومعاينة';
+                    if (instructions) instructions.style.display = 'none';
+                    if (replacerDiv) {
+                        replacerInput.value = '';
+                        replacerDiv.classList.remove('visible');
+                    }
+                });
+
+                card.querySelector('.copy-btn').addEventListener('click', e => {
+                    const btn = e.target;
+                    let codeToCopy;
+                    if (interactiveBlock.classList.contains('live-preview-area')) {
+                        codeToCopy = generateCodeFromCardPreview(interactiveBlock);
+                    } else {
+                        codeToCopy = interactiveBlock.querySelector('pre').innerText;
+                    }
+                    navigator.clipboard.writeText(codeToCopy).then(() => {
+                        const originalText = btn.innerHTML;
+                        btn.innerHTML = '✅ تم النسخ!';
+                        setTimeout(() => { btn.innerHTML = originalText; }, 2000);
+                    });
+                });
+            }
+
+            document.querySelectorAll('.code-card').forEach(card => initializeCard(card));
+            
+            const creatorEditor = document.getElementById('creator-editor');
+            const creatorOutput = document.getElementById('creator-output-code');
+            document.execCommand('styleWithCSS', false, false);
+
+            creatorEditor.addEventListener('input', () => {
+                creatorOutput.innerText = generateCodeFromCreator();
+            });
+            
+            document.getElementById('clear-creator-btn').addEventListener('click', () => { creatorEditor.innerHTML = ''; creatorOutput.innerText = ''; });
+            document.getElementById('creator-copy-btn').addEventListener('click', (e) => {
+                const btn = e.target;
+                creatorOutput.innerText = generateCodeFromCreator();
+                navigator.clipboard.writeText(creatorOutput.innerText).then(() => { btn.innerHTML = '✅ تم النسخ!'; setTimeout(() => { btn.innerHTML = '📋 نسخ الكود المخصص'; }, 2000); });
+            });
+
+            Object.entries(ffColors).forEach(([code, hex]) => {
+                const swatch = document.createElement('div'); swatch.className = 'color-swatch'; swatch.style.backgroundColor = hex; swatch.dataset.colorCode = code;
+                paletteContainer.appendChild(swatch);
+            });
+            
+            function showMenu(e) {
+                e.preventDefault();
+                menu.style.display = 'block';
+                let top = e.clientY + window.scrollY + 10;
+                let left = e.clientX + window.scrollX;
+                if (left + menu.offsetWidth > window.innerWidth) {
+                    left = window.innerWidth - menu.offsetWidth - 10;
+                }
+                 if (top + menu.offsetHeight > document.body.scrollHeight) {
+                    top = e.clientY + window.scrollY - menu.offsetHeight - 10;
+                }
+                menu.style.top = `${top}px`;
+                menu.style.left = `${left}px`;
+            }
+
+            function handleSelection(e) {
+                const sel = window.getSelection();
+                if (sel.rangeCount > 0 && !sel.isCollapsed && e.currentTarget.isContentEditable) {
+                    const container = e.currentTarget;
+                    menuState.context = container.id === 'creator-editor' ? 'creator' : 'card';
+                    menuState.range = sel.getRangeAt(0).cloneRange();
+                    
+                    const parentElement = menuState.range.commonAncestorContainer.parentElement;
+                    if(parentElement) {
+                        boldCheckbox.checked = document.queryCommandState('bold') || !!parentElement.closest('b, strong');
+                    }
+                    showMenu(e);
+                }
+            }
+            
+            document.querySelectorAll('.interactive-block').forEach(block => {
+                 block.addEventListener('dblclick', handleSelection);
+                 block.addEventListener('mouseup', handleSelection);
+                 block.addEventListener('contextmenu', handleSelection);
+            });
+            creatorEditor.addEventListener('dblclick', handleSelection);
+            creatorEditor.addEventListener('mouseup', handleSelection);
+            creatorEditor.addEventListener('contextmenu', handleSelection);
+
+            paletteContainer.addEventListener('click', e => {
+                if (!e.target.classList.contains('color-swatch') || !menuState.range) return;
+                const hexColor = ffColors[e.target.dataset.colorCode];
+                const colorCode = e.target.dataset.colorCode;
+                
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(menuState.range);
+
+                document.execCommand('foreColor', false, hexColor);
+
+                if(menuState.context === 'card'){
+                    const commonAncestor = menuState.range.commonAncestorContainer;
+                    const block = commonAncestor.nodeType === 1 ? commonAncestor.closest('.interactive-block') : commonAncestor.parentElement.closest('.interactive-block');
+                    if (block) {
+                       const affectedElements = block.querySelectorAll('font[color="' + hexColor + '"]');
+                       affectedElements.forEach(font => font.dataset.colorCode = colorCode);
+                    }
+                }
+                
+                if (menuState.context === 'creator') creatorOutput.innerText = generateCodeFromCreator();
+                menu.style.display = 'none';
+                menuState = {};
+            });
+
+            boldCheckbox.addEventListener('change', () => {
+                 if (!menuState.range) return;
+                const sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(menuState.range);
+
+                document.execCommand('bold', false, null);
+                
+                if (menuState.context === 'creator') creatorOutput.innerText = generateCodeFromCreator();
+                menu.style.display = 'none';
+                menuState = {};
+            });
+            
+            document.addEventListener('click', (e) => { 
+                if (!menu.contains(e.target)) {
+                     menu.style.display = 'none'; 
+                     menuState = {};
+                }
+            });
+        
+            const mainContainer = document.getElementById('main-container');
+            const searchOverlay = document.getElementById('search-overlay');
+            const openSearchBtn = document.getElementById('new-search-btn'); 
+            const closeSearchBtn = document.getElementById('close-search-btn');
+            const searchInput = document.getElementById('search-input-modal');
+            const searchInputClearBtn = document.getElementById('search-input-clear-btn');
+            const resultsContainer = document.getElementById('search-results-container');
+            const searchPlaceholder = document.getElementById('search-placeholder');
+
+            openSearchBtn.addEventListener('click', () => {
+                searchOverlay.style.display = 'flex';
+                mainContainer.style.display = 'none';
+                openSearchBtn.style.display = 'none'; 
+                document.body.style.overflow = 'hidden';
+                searchInput.focus();
+            });
+
+            const closeSearch = () => {
+                searchOverlay.style.display = 'none';
+                mainContainer.style.display = 'block';
+                openSearchBtn.style.display = 'flex';
+                document.body.style.overflow = 'auto';
+                searchInput.value = '';
+                resultsContainer.innerHTML = '';
+                resultsContainer.appendChild(searchPlaceholder.cloneNode(true));
+                searchInputClearBtn.style.display = 'none';
+            };
+
+            closeSearchBtn.addEventListener('click', closeSearch);
+            searchInputClearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchInput.focus();
+                searchInput.dispatchEvent(new Event('input'));
+            });
+            
+            function displaySearchResults(results) {
+                resultsContainer.innerHTML = '';
+                if (results.length === 0) {
+                    const noResults = document.createElement('p');
+                    noResults.textContent = 'لم يتم العثور على نتائج.';
+                    noResults.id = 'search-placeholder';
+                    resultsContainer.appendChild(noResults);
+                    return;
+                }
+                
+                let resultHTML = '';
+                results.forEach(codeData => {
+                    resultHTML += generateCardHTML(codeData);
+                });
+                resultsContainer.innerHTML = resultHTML;
+                resultsContainer.querySelectorAll('.code-card').forEach(card => initializeCard(card));
+            }
+
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                searchInputClearBtn.style.display = searchTerm ? 'block' : 'none';
+                
+                if (!searchTerm) {
+                    resultsContainer.innerHTML = '';
+                    resultsContainer.appendChild(searchPlaceholder.cloneNode(true));
+                    return;
+                }
+
+                const results = searchableCodes.filter(code => {
+                    const titleMatch = code.title.toLowerCase().includes(searchTerm);
+                    const keywordMatch = code.keywords && code.keywords.some(k => k.toLowerCase().includes(searchTerm));
+                    return titleMatch || keywordMatch;
+                });
+                
+                results.sort((a, b) => {
+                    const aIsExact = a.title.toLowerCase() === searchTerm;
+                    const bIsExact = b.title.toLowerCase() === searchTerm;
+                    return bIsExact - aIsExact;
+                });
+
+                displaySearchResults(results);
+            });
+
+            const suggestionTagsContainer = document.querySelector('.suggestion-tags');
+            const suggestions = [
+                { text: 'شكل', category: 'shapes-graphics-codes' },
+                { text: 'نادي', category: 'sports-clubs-codes' },
+                { text: 'علم', category: 'country-flags-codes' },
+                { text: 'حب', category: 'love-codes' },
+                { text: 'أسطورة', query: 'أسطورة' },
+                { text: 'VIP', query: 'vip' },
+                { text: 'الهلال', query: 'الهلال' },
+                { text: 'مصر', query: 'مصر' },
+                { text: 'جوكر', query: 'جوكر'},
+                { text: 'سلاح', query: 'سلاح'},
+                { text: 'نينجا', query: 'نينجا'},
+            ];
+
+            suggestions.forEach(sug => {
+                const tag = document.createElement('button');
+                tag.className = 'suggestion-tag';
+                tag.textContent = sug.text;
+                tag.addEventListener('click', () => {
+                    if (sug.query) {
+                        searchInput.value = sug.query;
+                        searchInput.dispatchEvent(new Event('input')); 
+                    } else if (sug.category) {
+                        searchInput.value = ''; 
+                        const categoryResults = searchableCodes.filter(code => code.category === sug.category);
+                        displaySearchResults(categoryResults); 
+                    }
+                    searchInput.focus();
+                });
+                suggestionTagsContainer.appendChild(tag);
+            });
+        });
+    </script>
+</body>
+</html>
