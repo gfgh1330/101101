@@ -147,7 +147,7 @@
                 <p class="instructions">اكتب النص، ثم **ظلل (حدد) الكلمات** التي تريد تلوينها. يمكنك أيضاً **النقر المزدوج** على أي كلمة لتحديدها وإظهار القائمة.</p>
                 <div style="position: relative;">
                     <div id="creator-editor" contenteditable="true" spellcheck="false"></div>
-                    <button id="clear-creator-btn" title="مسح الكل">&times;</button>
+                    <button id="clear-creator-btn" title="مسح الكل">×</button>
                 </div>
                 <div style="margin-top: 20px;">
                     <p style="color: var(--secondary-text-color);">الكود النهائي (جاهز للنسخ):</p>
@@ -179,7 +179,7 @@
             
         </main>
         
-        <footer><p>&copy; 2024 - أكواد بروفايل فري فاير.</p></footer>
+        <footer><p>© 2024 - أكواد بروفايل فري فاير.</p></footer>
     </div>
     
     <button id="new-search-btn" title="بحث">🔎</button>
@@ -195,11 +195,11 @@
 
     <div id="search-overlay">
         <div class="search-modal">
-            <button id="close-search-btn">&times;</button>
+            <button id="close-search-btn">×</button>
             <h2>ابحث عن الكود المثالي</h2>
             <div class="search-input-wrapper">
                 <input type="text" id="search-input-modal" placeholder="اكتب كلمة للبحث (مثال: سماء, الهلال, مصر)...">
-                <button id="search-input-clear-btn">&times;</button>
+                <button id="search-input-clear-btn">×</button>
             </div>
             <div class="suggestion-tags"></div>
             <div id="search-results-container">
@@ -248,7 +248,7 @@
                 const replacerHTML = hasReplacer ? `<div class="local-replacer"><input type="text" class="local-replacer-input"></div>` : '';
                 const instructionsHTML = hasReplacer ? `<p class="card-instructions">لتغيير النص، استخدم الصندوق أدناه. لتغيير الألوان، حدد النص في المعاينة.</p>` : '';
 
-                return `<div class="code-card" data-card-id="${data.id}" data-original-template="${data.template.replace(/"/g, '&quot;')}" data-default-text="${data.defaultText || ''}"><div class="card-header"><h3>${data.title}</h3><button class="reset-btn" title="إعادة تعيين"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button></div><div class="interactive-block"><pre></pre></div>${instructionsHTML}${replacerHTML}<div class="card-footer"><button class="card-button toggle-btn">✍️ تعديل ومعاينة</button><button class="${copyBtnClass}">📋 نسخ الكود</button></div></div>`;
+                return `<div class="code-card" data-card-id="${data.id}" data-original-template="${data.template.replace(/"/g, '"')}" data-default-text="${data.defaultText || ''}"><div class="card-header"><h3>${data.title}</h3><button class="reset-btn" title="إعادة تعيين"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/><path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/></svg></button></div><div class="interactive-block"><pre></pre></div>${instructionsHTML}${replacerHTML}<div class="card-footer"><button class="card-button toggle-btn">✍️ تعديل ومعاينة</button><button class="${copyBtnClass}">📋 نسخ الكود</button></div></div>`;
             }
 
             function populateGrid(containerId, dataArray) {
