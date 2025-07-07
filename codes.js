@@ -1,4 +1,4 @@
-// هذا هو محتوى ملف codes.js
+// هذا هو محتوى ملف codes.js - النسخة الكاملة
 const allCodeData = {
     'shapes-graphics-codes': [
         { title: 'سماء وغيوم', id: 'shape-sky', template: '[c][6CABDD]☁️      ☁️\n[b]  {{TEXT}}\n[6CABDD]   ☁️      ☁️', defaultText: 'YourName', keywords: ['غيم', 'سحاب'] },
