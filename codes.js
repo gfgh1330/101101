@@ -1,4 +1,4 @@
-// هذا هو محتوى ملف codes.js - النسخة الكاملة
+// هذا هو محتوى ملف codes.js - النسخة الكاملة بكل الأكواد
 const allCodeData = {
     'shapes-graphics-codes': [
         { title: 'سماء وغيوم', id: 'shape-sky', template: '[c][6CABDD]☁️      ☁️\n[b]  {{TEXT}}\n[6CABDD]   ☁️      ☁️', defaultText: 'YourName', keywords: ['غيم', 'سحاب'] },
@@ -49,16 +49,6 @@ const allCodeData = {
         { title: 'ملاحظات موسيقية', id: 'shape-music-notes-2', template: '[c][b][FFFFFF]♫♪.ılılıll|̲̅̅●̲̅̅|̲̅̅=̲̅̅|̲̅̅●̲̅̅|llılılı.♫♪', keywords: ['أغنية'] },
         { title: 'وجه يبكي (Kaomoji)', id: 'shape-crying', template: '[c][FFFFFF]( T _ T )', keywords: ['حزين', 'بكي'] },
         { title: 'أرنب لطيف (Kaomoji)', id: 'shape-bunny', template: '[c][FFFFFF](\\__/) \n(  =\'.\'=)\n(")_(")', keywords: ['أرنب'] },
-        { title: 'شعار باتمان فني', id: 'shape-batman-art', template: '[c][000000]    .--. \n   |o_o | \n   |:_/ | \n  //   \\ \\ \n (|     | ) \n/\'\\_   _/\'\\ \n\\___)=(___/', keywords: ['باتمان'] },
-        { title: 'شكل شبح', id: 'shape-ghost', template: '[c][FFFFFF] .-.\n(o o) boo!\n| O \\\n \\   \\\n  `~~~`', keywords: ['شبح'] },
-        { title: 'كود قهوة', id: 'shape-coffee', template: '[c][6D7B8D]   .-.    \n  (   )   \n   `~`    \n[E1D9D1]c[_] COFFEE', keywords: ['قهوة'] },
-        { title: 'بروفايل مخلب', id: 'shape-claw', template: '[b][c][A0A0A0]爪 [FFFFFF]C L A W [A0A0A0]爪' },
-        { title: 'شكل سحابة رعدية', id: 'shape-storm-cloud', template: '[c][A0A0A0]  .--.    \n.-(  _).-. \n( ´    ) `)\n ` ._.) .´  \n[FFFF00]    ⚡️', keywords: ['عاصفة'] },
-        { title: 'وجه مبتسم بسيط', id: 'shape-smiley', template: '[c][FFFF00]:-)', keywords: ['سعيد'] },
-        { title: 'شعار قرصان فني', id: 'shape-pirate-flag', template: '[c][FFFFFF]   / \\\n  / _ \\\n | ( ) |\n  \\_-_/ \n[000000]   / \\\n  /   \\\n /     \\', keywords: ['قرصان', 'جمجمة'] },
-        { title: 'رمز السلام', id: 'shape-peace', template: '[c][00aaff]☮︎ PEACE', keywords: ['سلام'] },
-        { title: 'شكل UFO', id: 'shape-ufo', template: '[c][A0A0A0]    .    \n   .:.   \n.´¯`:´¯`.\n`-. `.` .-\'\n   `·´   ', keywords: ['فضائي'] },
-        { title: 'مفتاح صول', id: 'shape-sol-key', template: '[c][FFD700]𝄞', keywords: ['موسيقى'] }
     ],
     'sports-clubs-codes': [
         { title: 'الهلال السعودي', id: 'club-hilal', template: '[b][0000FF] زعيم آسيا 🇸🇦\n[FFFFFF] {{TEXT}}', defaultText: 'Al-Hilal', keywords: ['هلال'] },
@@ -81,7 +71,7 @@ const allCodeData = {
         { title: 'ريال مدريد', id: 'real', template: '[b]{{TEXT}}\n[FFFFFF]██[0A1A57]██\n[0A1A57]██[FFFFFF]██', defaultText: 'R.M.A', keywords: ['مدريد', 'ريل', 'real madrid'] },
         { title: 'إنتر ميلان', id: 'club-inter', template: '[b][0000FF]█[000000]█\n[FFFFFF] Inter Milan', keywords: ['انتر'] },
         { title: 'إيه سي ميلان', id: 'club-milan', template: '[b][FF0000]█[000000]█\n[FFFFFF] AC Milan', keywords: ['ميلان'] },
-        { title: 'بروسيا دورتموند', id: 'club-bvb', template: '[b][FFFF00]█[000000]█\n[FFFFFF] Dortmund', keywords: ['دورتموند'] }
+        { title: 'بروسيا دورتموند', id: 'club-bvb', template: '[b][FFFF00]█[000000]█\n[FFFFFF] Dortmund', keywords: ['دورتموند'] },
     ],
     'country-flags-codes': [
         { title: 'علم السعودية 🇸🇦', id: 'flag-ksa', template: '[b][006F2A]█🇸🇦█\n[FFFFFF] {{TEXT}}', defaultText: 'K.S.A', keywords: ['سعوديه'] },
@@ -97,10 +87,10 @@ const allCodeData = {
         { title: 'علم الكويت 🇰🇼', id: 'flag-kuwait', template: '[b][008000]█[FFFFFF]█[FF0000]█\n[000000]▶[FFFFFF] {{TEXT}}', defaultText: 'KWT', keywords: [] },
         { title: 'علم البرازيل 🇧🇷', id: 'flag-brazil', template: '[b][009C3B]█[FFDF00]◆[009C3B]█\n[FFFFFF] {{TEXT}}', defaultText: 'BRA', keywords: [] },
         { title: 'علم الأرجنتين 🇦🇷', id: 'flag-argentina', template: '[b][6CABDD]█[FFFFFF]☀️[FFFFFF]█[6CABDD]█\n[000000] {{TEXT}}', defaultText: 'ARG', keywords: ['ميسي'] },
-        { title: 'علم البرتغال 🇵🇹', id: 'flag-portugal', template: ' [b][006F2A]█[FF0000]█\n[FFFFFF] {{TEXT}}', defaultText: 'POR', keywords: ['رونالدو'] },
+        { title: 'علم البرتغال 🇵🇹', id: 'flag-portugal', template: '[b][006F2A]█[FF0000]█\n[FFFFFF] {{TEXT}}', defaultText: 'POR', keywords: ['رونالدو'] },
         { title: 'علم ألمانيا 🇩🇪', id: 'flag-germany', template: '[B][000000]███\n[FF0000]███{{TEXT}}\n[FFCC00]███', defaultText: 'G.E.R', keywords: ['المانيا'] },
         { title: 'علم فرنسا 🇫🇷', id: 'flag-france', template: '[b]{{TEXT}}\n[0055A4]██[FFFFFF]██[EF4135]██', defaultText: 'F.R.A' },
-        { title: 'علم إيطاليا 🇮🇹', id: 'flag-italy', template: '[b]{{TEXT}}\n[009246]██[FFFFFF]██[CD212A]██', defaultText: 'I.T.A' }
+        { title: 'علم إيطاليا 🇮🇹', id: 'flag-italy', template: '[b]{{TEXT}}\n[009246]██[FFFFFF]██[CD212A]██', defaultText: 'I.T.A' },
     ],
     'love-codes': [
         { title: 'حب أبدي', id: 'love-forever', template: '[FF4F8B]❤[FFFFFF] {{TEXT}} [FF4F8B]❤\n[c][FFFFFF]F O R E V E R', defaultText: 'You & Me' },
@@ -137,17 +127,12 @@ const allCodeData = {
         { title: 'بيت الحب', id: 'love-house', template: '[b][c]╱◥██████◣\n[ffd319]│∩│▤│▤│▤\n▓▓▓▓▓▓▓▓▓ FF LOVE'},
         { title: 'أنتِ قمري', id: 'love-my-moon', template: '[b][c][FFFFFF]أنتِ [FFFF00]قمري 🌙', keywords: ['قمر'] },
         { title: 'حب مزخرف', id: 'love-arabic-art', template: '[c][FF4F8B]حُــب', keywords: [] },
-        { title: 'مرتبط ❤️', id: 'love-taken', template: '[b][c][A0A0A0]TAKEN [FF0000]❤', keywords: ['مرتبط'] },
+        { title: 'مأخوذ ❤️', id: 'love-taken', template: '[b][c][A0A0A0]TAKEN [FF0000]❤', keywords: ['مرتبط'] },
         { title: 'أحرف متشابكة', id: 'love-initials', template: '[b][c][FFFFFF]{{NAME1}} [FF4F8B]& [FFFFFF]{{NAME2}}', defaultText: 'A,B', keywords: ['حرف'] },
         { title: 'أنتِ حياتي', id: 'love-my-life', template: '[b][c][FF4F8B]You are my [FFFFFF]Life', keywords: ['حياة'] },
-        { title: 'رسالة حب', id: 'love-letter', template: '[c][FFFFFF] sealed with a [FF0000]❤︎', keywords: ['رسالة'] },
-        { title: 'حب لا يقهر', id: 'love-unbeatable', template: '[c][b]Unbeatable Love [FFD700]⚡︎' },
-        { title: 'شركاء في الجريمة', id: 'love-partners-crime', template: '[c][b][A0A0A0]Partners in [FF0000]Crime' },
-        { title: 'أنتِ أغنيتي المفضلة', id: 'love-song', template: '[c][b][FF00FF]You are my favorite song ♫' },
-        { title: 'فقط أنت', id: 'love-only-you', template: '[c][b][00aaff]It\'s always been [FFFFFF]you.' }
     ],
     'gaming-status-codes': [
-        { title: 'الحساب تحت المراقبة', id: 'new-banned-safe', template: '[b][c][FFA500]⚠ [FFFFFF]هذا الحساب مميز', keywords: ['بان', 'باند'] },
+        { title: 'الحساب محظور', id: 'new-banned', template: '[b][c][FFA500]⚠ [FF0000]هذا الحساب محظور', keywords: ['بان', 'باند'] },
         { title: 'بروفايل أسطورة مزخرف', id: 'new-legend-fancy', template: '[b][c][FFD700]꧁༺{{TEXT}}༻꧂\n      ♛ L E G E N D ♛', defaultText: 'YourName', keywords: ['اسطوره'] },
         { title: 'بروفايل مقاتل', id: 'new-warrior', template: '[b][c][A0A0A0]—⚔︎ {{TEXT}} ⚔︎—\n[FF0000]      BORN TO FIGHT', defaultText: 'Warrior' },
         { title: 'بروفايل غامض', id: 'new-mystic', template: '[c][FF00FF]☾ [FFFFFF]{{TEXT}} [FF00FF]☽\n[b][5865F2]      乡 D R E A M E R 鄉', defaultText: 'Mystic' },
@@ -165,6 +150,7 @@ const allCodeData = {
         { title: 'بروفايل مبرمج', id: 'new-coder', template: '[b][c][00FF00]<[FFFFFF]C O D E R[00FF00]/>' },
         { title: 'بروفايل HEADSHOT', id: 'new-headshot', template: '[b][c][FF0000]H E A D S H O T\n[FFFFFF]      🎯', keywords: ['هيدشوت'] },
         { title: 'بروفايل مقاتل الظل', id: 'new-shadow', template: '[b][c][A0A0A0]S H A D O W\n[000000]█[A0A0A0]█[000000]█[A0A0A0]█[000000]█\n[A0A0A0]      ⚔︎' },
+        { title: 'بروفايل لاعب فورتنايت', id: 'new-fortnite', template: '[b][c][FF00FF]FORT[00F2EA]NITE\n[FFFFFF]    ⛏️' },
         { title: 'كود لا تستسلم', id: 'new-never-give-up', template: '[b][c]NEVER\n[FFD700]GIVE\n[FFFFFF]UP' },
         { title: 'كود ONE SHOT', id: 'new-one-shot', template: '[b][c][FFFFFF]ONE SHOT\n[FF0000]ONE KILL' },
         { title: 'كود ستايل B2K', id: 'new-b2k-style', template: '[b][c][FF0000]B[FFFFFF]2[0000FF]K\n[A0A0A0]Born To Kill' },
@@ -192,27 +178,15 @@ const allCodeData = {
         { title: 'بروفايل سايبربنك', id: 'cyberpunk-style', template: '[b][c][00F2EA]C Y B E R\n[FF00FF]P U N K', keywords: ['سايبر'] },
         { title: 'بروفايل Glitch', id: 'glitch-style', template: '[b][c][FF0000]G[00F2EA]L[FFFFFF]I[FF0000]T[00F2EA]C[FFFFFF]H', keywords: ['غليتش'] },
         { title: 'بروفايل الزعيم', id: 'the-boss-style', template: '[b][c][FFD700]T H E  B O S S\n[FFFFFF]     - 亗 -', keywords: ['بوس'] },
-        { title: 'ملك الهيدشوت', id: 'gaming-headshot-king', template: '[b][c][FFD700] ♛\n[FF0000]HEADSHOT [FFFFFF]KING', keywords: ['هيدشوت'] },
-        { title: 'أنا الأفضل', id: 'gaming-goat', template: '[b][c][FFD700] G.O.A.T\n[FFFFFF] Greatest Of All Time', keywords: ['الافضل'] },
-        { title: 'منطقة الخطر', id: 'gaming-danger-zone', template: '[b][c][FFFF00]⚠︎ [FF0000]DANGER ZONE [FFFF00]⚠︎' },
-        { title: 'لاعب محترف', id: 'gaming-pro', template: '[b][c][00aaff]P R O - P L A Y E R', keywords: ['محترف'] },
-        { title: 'وضع التدمير', id: 'gaming-destroyer', template: '[b][c][FF0000]D E S T R O Y E R', keywords: ['مدمر'] },
-        { title: 'آخر الناجين', id: 'gaming-survivor', template: '[b][c][00FF00]LAST SURVIVOR', keywords: ['الناجي'] },
-        { title: 'كابوسك', id: 'gaming-nightmare', template: '[b][c][FF00FF]YOUR\n[A0A0A0]NIGHTMARE', keywords: ['كابوس'] },
-        { title: 'الجلاد', id: 'gaming-executioner', template: '[b][c][FF0000]THE EXECUTIONER\n[FFFFFF]       🪓', keywords: ['جلاد'] },
-        { title: 'متقاعد', id: 'gaming-retired', template: '[b][c][A0A0A0]RETIRED LEGEND', keywords: ['اعتزال'] },
-        { title: 'صائد الجوائز', id: 'gaming-bounty-hunter', template: '[b][c][FFA500]BOUNTY HUNTER\n[FFFFFF]        💰' },
-        { title: 'أسطورة لا تُهزم', id: 'gaming-unbeaten', template: '[b][c][FFD700]UNBEATEN LEGEND' },
-        { title: 'ملك الصحراء', id: 'gaming-desert-king', template: '[b][c][FFD700]DESERT KING\n[FFFF00]      🦅' },
-        { title: 'لا رحمة', id: 'gaming-no-mercy-2', template: '[b][c][FF0000]NO MERCY FOR SQUAD', keywords: ['رحمة'] },
-        { title: 'قاتل مأجور', id: 'gaming-hitman', template: '[b][c][A0A0A0]H I T M A N', keywords: ['قاتل'] }
     ],
     'misc-quotes-codes': [
         { title: 'مقولة: كن قوياً', id: 'quote-strong', template: '[b][c][00aaff]S T A Y\n[FFFFFF]S T R O N G', keywords: ['قوي'] },
         { title: 'مقولة: حلم كبير', id: 'quote-dream-big', template: '[b][c][FF00FF]DREAM\n[FFFFFF]  BIG', keywords: ['حلم'] },
         { title: 'مثل: اطلبوا العلم', id: 'quote-knowledge', template: '[b][c][6CABDD]اطلبوا العلم\n[FFFFFF]من المهد إلى اللحد', keywords: ['علم'] },
         { title: 'مثل: كن أنت التغيير', id: 'quote-be-change', template: '[b][c][00FF00]كن أنت التغيير الذي\n[FFFFFF]تريد أن تراه في العالم', keywords: ['تغيير'] },
-        { title: 'كود ماتركس', id: 'hacker-matrix', template: '[00FF00][b]The Matrix Has You...', keywords: ['ماتركس'] },
+        { title: 'كود ماتركس', id: 'hacker-matrix', template: '[00FF00][b]The Matrix Has You...', keywords: ['هاكر', 'ماتركس'] },
+        { title: 'كود تحميل...', id: 'hacker-loading', template: '[00FF00][b]ACCESSING DATABASE...\n[FFFFFF]LOADING [00FF00]▓▓▓▓▓░░░░░', keywords: ['تحميل'] },
+        { title: 'كود اختراق النظام', id: 'hacker-system', template: '[00FF00][b]> system_hack.exe\n[FF0000]ACCESS DENIED', keywords: ['اختراق'] },
         { title: 'كود ثنائي', id: 'hacker-binary', template: '[c][00FF00]01010101\n[FFFFFF]10101010\n[00FF00]01010101', keywords: ['binary'] },
         { title: 'حيوان: الأسد', id: 'animal-lion', template: '[b][c][FFA500]KING OF\n[FFFFFF]THE JUNGLE 🦁', keywords: ['أسد'] },
         { title: 'حيوان: الثعبان', id: 'animal-snake', template: '[b][c][00FF00]S S S S . . .\n[FFFFFF]      🐍', keywords: ['ثعبان'] },
@@ -231,17 +205,6 @@ const allCodeData = {
         { title: 'برج الجدي ♑', id: 'zodiac-capricorn', template: '[c][b][6D7B8D]♑︎ CAPRICORN ♑︎' },
         { title: 'برج الدلو ♒', id: 'zodiac-aquarius', template: '[c][b][00F2EA]♒︎ AQUARIUS ♒︎' },
         { title: 'برج الحوت ♓', id: 'zodiac-pisces', template: '[c][b][5865F2]♓︎ PISCES ♓︎' },
-        { title: 'مقولة: الأفعال أبلغ من الأقوال', id: 'quote-actions', template: '[b][c][FFFFFF]Actions speak\n[00aaff]louder than words', keywords: ['أفعال'] },
-        { title: 'مقولة: الوقت من ذهب', id: 'quote-time', template: '[b][c][FFD700]الوقت من ذهب\n[A0A0A0]إن لم تدركه ذهب', keywords: ['وقت'] },
-        { title: 'مقولة: لا يوجد مستحيل', id: 'quote-impossible', template: '[b][c][FFFFFF]IMPOSSIBLE\n[00FF00]IS NOTHING', keywords: ['مستحيل'] },
-        { title: 'مقولة: كن نفسك', id: 'quote-be-yourself', template: '[b][c][FF00FF]Be yourself;\n[FFFFFF]everyone else is taken.' },
-        { title: 'حيوان: الذئب', id: 'animal-wolf', template: '[b][c][A0A0A0]THE WOLF\n[FFFFFF]ON THE HILL 🐺', keywords: ['ذئب'] },
-        { title: 'كود إشارة الراديو', id: 'misc-radio', template: '[c][00FF00]● REC\n[A0A0A0]Broadcasting Live...', keywords: ['راديو'] },
-        { title: 'حيوان: الغراب', id: 'animal-crow', template: '[b][c][000000]THE CROW\n[A0A0A0]      • • •', keywords: ['غراب'] },
-        { title: 'حيوان: الثور', id: 'animal-bull', template: '[b][c][DA291C]UNSTOPPABLE\n[FFFFFF]     🐂', keywords: ['ثور'] },
-        { title: 'فصيلة الدم: O+', id: 'misc-blood-opos', template: '[b][c][FF0000]Blood Type: O+' },
-        { title: 'فصيلة الدم: A+', id: 'misc-blood-apos', template: '[b][c][FF0000]Blood Type: A+' },
-        { title: 'كود ERROR 404', id: 'misc-error404', template: '[c][A0A0A0]ERROR 404\n[FFFFFF]PLAYER NOT FOUND', keywords: ['خطأ'] }
     ],
     'social-media-codes': [
         { title: 'انستغرام (ستايل نجوم)', id: 'insta-stars', template: '[b][c]╭─╮\n︱◯֯︱★ɪɴꜱᴛᴀ★┊[ff0000]{{TEXT}}\n╰─╯', defaultText: 'اسمك', keywords: ['انستا'] },
@@ -255,6 +218,6 @@ const allCodeData = {
         { title: 'شريط الموسيقى', id: 'music-player', template: '[33CC99]▷◉───────00:00', keywords: ['اغنية'] },
         { title: 'رمز واي فاي', id: 'new-wifi', template: '[b][c][A0A0A0]Searching for WiFi\n[00FF00]   📶' },
         { title: 'رمز الهاتف', id: 'new-call-me', template: '[b][c][00FF00]CALL ME\n[FFFFFF]     📞', keywords: ['اتصل'] },
-        { title: 'واتساب', id: 'whatsapp', template: '[b][c][00FF00]WhatsApp\n[FFFFFF]{{TEXT}}', defaultText: 'رقمك', keywords: ['واتس'] }
+        { title: 'واتساب', id: 'whatsapp', template: '[b][c][00FF00]WhatsApp\n[FFFFFF]{{TEXT}}', defaultText: 'رقمك', keywords: ['واتس'] },
     ]
 };
