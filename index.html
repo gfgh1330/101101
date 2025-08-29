@@ -220,8 +220,30 @@
                 document.querySelector('main').innerHTML = '<h2 style="color: red; text-align: center;">فشل تحميل الأكواد. يرجى التأكد من وجود ملف `codes.js` في نفس المجلد.</h2>';
                 return;
             }
+            
+            // --- قائمة الألوان المحدثة والموسعة ---
+            const ffColors = {
+                'FF0000':'#FF0000', 'FF4F8B':'#ff4f8b', 'FFD700':'#FFD700', 'FFFFFF':'#FFFFFF', '00FF00':'#00FF00', '0000FF':'#0000FF', '004D98':'#004D98', 
+                'A50044':'#A50044', '0A1A57':'#0A1A57', '6D7B8D':'#6D7B8D', 'FFA500':'#FFA500', 'FFD319':'#FFD319', '000000':'#000000', 'DA291C':'#DA291C', 
+                '6CABDD':'#6CABDD', 'D30000':'#D30000', '003D73':'#003D73', 'E1D9D1':'#E1D9D1', 'E2001A':'#E2001A', '004B87':'#004B87', 'E30613':'#E30613', 
+                'FFCD00':'#FFCD00', '008000':'#008000', '006F2A':'#006F2A', '009C3B':'#009C3B', 'FFDF00':'#FFDF00', '5865F2':'#5865F2', '00F2EA':'#00F2EA', 
+                'FF00FF':'#FF00FF', 'A0A0A0':'#A0A0A0', '33CC99':'#33CC99', 'FFB900':'#FFB900', 'CCFF00':'#CCFF00', 'FF9933':'#FF9933', '00FF7F':'#00FF7F', 
+                'FF0099':'#FF0099', 'FF8800':'#FF8800', '9B1B30':'#9B1B30', 'EF4135':'#EF4135', 'CD212A':'#CD212A', '009246':'#009246', '0055A4':'#0055A4',
+                '3DD744':'#3DD744', 'FF8835':'#FF8835', 'FF91FF':'#FF91FF', '384ECB':'#384ECB', 'FF8B00':'#FF8B00', '00FF4D':'#00FF4D', 'FC3C88':'#FC3C88', 
+                '757E80':'#757E80', 'ECAAD3':'#ECAAD3', 'F6B9E0':'#F6B9E0', 'FDCBE9':'#FDCBE9', 'FDE1F6':'#FDE1F6', 'C66FA7':'#C66FA7', 'BA6098':'#BA6098', 
+                'FDE8D5':'#FDE8D5', 'F0C4A0':'#F0C4A0', 'D8A379':'#D8A379', 'C47F4F':'#C47F4F', 'F5F4B8':'#F5F4B8', 'F4FEF2':'#F4FEF2', 'B7A925':'#B7A925', 
+                'A9F1A3':'#A9F1A3', '96E28F':'#96E28F', '6FCD66':'#6FCD66', 'CCFCC6':'#CCFCC6', 'F44636':'#F44636', 'E0FEDB':'#E0FEDB', 'FFEBEE':'#FFEBEE', 
+                'E57373':'#E57373', 'EF5350':'#EF5350', 'E53935':'#E53935', 'D32F2F':'#D32F2F', 'C62828':'#C62828', 'FF8D8D':'#FF8D8D', 'FF5252':'#FF5252', 
+                'FF1744':'#FF1744', 'FCE4EC':'#FCE4EC', 'F8BBD0':'#F8BBD0', 'F48FB1':'#F48FB1', 'F06292':'#F06292', 'EC407A':'#EC407A', 'D81B60':'#D81B60', 
+                'C2185B':'#C2185B', 'F3E5F5':'#F3E5F5', 'FF80AB':'#FF80AB', 'E91E63':'#E91E63', 'F50057':'#F50057', '2F4F4F':'#2F4F4F', '708090':'#708090', 
+                '778899':'#778899', '696969':'#696969', '808080':'#808080', 'A9A9A9':'#A9A9A9', 'C0C0C0':'#C0C0C0', 'D3D3D3':'#D3D3D3', 'DCDCDC':'#DCDCDC', 
+                'FFFAFA':'#FFFAFA', 'CD5C5C':'#CD5C5C', 'F08080':'#F08080', 'FFA07A':'#FFA07A', 'DC143C':'#DC143C', 'B22222':'#B22222', 'FF6347':'#FF6347', 
+                'FF4500':'#FF4500', 'FF8C00':'#FF8C00', 'FFFF00':'#FFFF00', 'ADFF2F':'#ADFF2F', '7FFF00':'#7FFF00', '32CD32':'#32CD32', '00FA9A':'#00FA9A', 
+                '00FFFF':'#00FFFF', '48D1CC':'#48D1CC', '40E0D0':'#40E0D0', '00CED1':'#00CED1', '00BFFF':'#00BFFF', '1E90FF':'#1E90FF', '6495ED':'#6495ED', 
+                '8A2BE2':'#8A2BE2', '9400D3':'#9400D3', '9932CC':'#9932CC', 'BA55D3':'#BA55D3', 'FF1493':'#FF1493', 'FF69B4':'#FF69B4', 'FFB6C1':'#FFB6C1', 
+                'FFF0F5':'#FFF0F5', 'F5F5DC':'#F5F5DC', 'FFFFF0':'#FFFFF0'
+            };
 
-            const ffColors = {'FF0000':'#FF0000','FF4F8B':'#ff4f8b','FFD700':'#FFD700','FFFFFF':'#FFFFFF','00FF00':'#00FF00','0000FF':'#0000FF','004D98':'#004D98','A50044':'#A50044','0A1A57':'#0A1A57','6D7B8D':'#6D7B8D','FFA500':'#FFA500','FFD319':'#FFD319','000000':'#000000','DA291C':'#DA291C','6CABDD':'#6CABDD','D30000':'#D30000','003D73':'#003D73','E1D9D1':'#E1D9D1','E2001A':'#E2001A','004B87':'#004B87','E30613':'#E30613','FFCD00':'#FFCD00','008000':'#008000','006F2A':'#006F2A','009C3B':'#009C3B','FFDF00':'#FFDF00','5865F2':'#5865F2','00F2EA':'#00F2EA','FF00FF':'#FF00FF','A0A0A0':'#A0A0A0','33CC99':'#33CC99', 'FFB900': '#FFB900', 'CCFF00': '#CCFF00', 'FF9933': '#FF9933', '00FF7F': '#00FF7F', 'FF0099': '#FF0099', 'FF8800': '#FF8800', '9B1B30': '#9B1B30', 'EF4135': '#EF4135', 'CD212A': '#CD212A', '009246':'#009246', '0055A4': '#0055A4'};
             const invertedFfColors = Object.fromEntries(Object.entries(ffColors).map(([code, hex]) => [hex.toLowerCase(), code]));
             
             const allCodeArrays = allCodeData;
@@ -271,7 +293,8 @@
            
             function parseCodeToModel(rawCode) {
                 const model = [];
-                const regex = /(\[([0-9a-fA-F]{6})\])|(\[b\])|(\[c\])|(\n)|([^[\n]+)/gi;
+                // --- تعديل: Regex الآن يفهم الأكواد مع أو بدون الحرف الخفي ---
+                const regex = /(\[([0-9a-fA-F]{6})ِ?\])|(\[bِ?\])|(\[cِ?\])|(\n)|([^[\n]+)/gi;
                 let match;
                 while ((match = regex.exec(rawCode)) !== null) {
                     if (match[2]) model.push({ type: 'color', value: match[2].toUpperCase() });
@@ -324,7 +347,8 @@
                 
                 let isAnythingBold = !!tempDiv.querySelector("b, strong") || Array.from(tempDiv.querySelectorAll('span[style*="bold"]')).length > 0;
 
-                if (isAnythingBold) code += '[b]';
+                // --- تعديل: إضافة الحرف الخفي `ِ` للكود ---
+                if (isAnythingBold) code += '[bِ]';
 
                 function processNode(node) {
                     let text = '';
@@ -339,7 +363,8 @@
                            currentColor = invertedFfColors[hexColor.toLowerCase()];
                         }
                         if (currentColor && currentColor.toUpperCase() !== lastColor) {
-                            text += `[${currentColor.toUpperCase()}]`;
+                            // --- تعديل: إضافة الحرف الخفي `ِ` للكود ---
+                            text += `[${currentColor.toUpperCase()}ِ]`;
                             lastColor = currentColor.toUpperCase();
                         }
                         node.childNodes.forEach(child => { text += processNode(child); });
@@ -347,7 +372,7 @@
                     return text;
                 }
                 container.childNodes.forEach(node => { code += processNode(node); });
-                return code.replace(/\n\n/g, '\n').replace(/\[FFFFFF\]/g, '').trim();
+                return code.replace(/\n\n/g, '\n').replace(/\[FFFFFFِ?\]/g, '').trim();
             }
             
             function generateCodeFromCardPreview(interactiveBlock) {
@@ -357,8 +382,9 @@
                 tempDiv.innerHTML = interactiveBlock.innerHTML;
                 let isBold = !!tempDiv.querySelector("b, strong");
 
-                if (isBold) code += '[b]';
-                if (interactiveBlock.dataset.codeContainsCenter === 'true') code += '[c]';
+                // --- تعديل: إضافة الحرف الخفي `ِ` للكود ---
+                if (isBold) code += '[bِ]';
+                if (interactiveBlock.dataset.codeContainsCenter === 'true') code += '[cِ]';
 
                 function processCardNode(node) {
                     let text = '';
@@ -369,7 +395,8 @@
                     } else if (node.nodeName === 'FONT') {
                         const colorCode = node.dataset.colorCode;
                         if (colorCode && colorCode.toUpperCase() !== lastColor && colorCode.toUpperCase() !== 'FFFFFF') {
-                            text += `[${colorCode.toUpperCase()}]`;
+                            // --- تعديل: إضافة الحرف الخفي `ِ` للكود ---
+                            text += `[${colorCode.toUpperCase()}ِ]`;
                             lastColor = colorCode.toUpperCase();
                         }
                         node.childNodes.forEach(child => text += processCardNode(child));
@@ -426,7 +453,7 @@
                     } else {
                         const codeToRender = interactiveBlock.querySelector('pre').innerText;
                         const model = parseCodeToModel(codeToRender);
-                        interactiveBlock.dataset.codeContainsCenter = codeToRender.toLowerCase().includes('[c]');
+                        interactiveBlock.dataset.codeContainsCenter = codeToRender.toLowerCase().includes('[c');
                         renderPreview(interactiveBlock, model);
                         interactiveBlock.contentEditable = true;
                         btn.innerHTML = '👨‍💻 عرض الكود';
@@ -445,7 +472,7 @@
                         const isPreview = interactiveBlock.classList.contains('live-preview-area');
                         if (isPreview) {
                            const model = parseCodeToModel(newCode);
-                           interactiveBlock.dataset.codeContainsCenter = newCode.toLowerCase().includes('[c]');
+                           interactiveBlock.dataset.codeContainsCenter = newCode.toLowerCase().includes('[c');
                            renderPreview(interactiveBlock, model);
                         } else {
                            interactiveBlock.querySelector('pre').innerText = newCode;
